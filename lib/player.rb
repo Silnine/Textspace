@@ -2,6 +2,7 @@ require_relative 'assets.rb'
 
 class Player
   def initialize(x, y, speed)
+    @sprite = PLAYER
     @x = x
     @y = y
     @speed = speed
@@ -20,10 +21,7 @@ class Player
     end
   end
 
-  def draw
-    @sprite = Sprite.new(
-      PLAYER,
-      x: @x, y: @y,
-    )
+  def draw_player
+    @sprite.draw(@x, @y, 1)
   end
 end

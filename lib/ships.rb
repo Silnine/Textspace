@@ -2,12 +2,13 @@ require_relative 'assets.rb'
 require_relative 'map.rb'
 
 class Ship
-  def draw
+  def draw_ship
     for x in 1..@width
       for y in 1..@height
-        tile, rotate, blocked = check_tile(@layout[y - 1][x - 1])
-        if tile
-          Tile.new(tile, x, y, rotate).draw
+        sprite, rotate, layer = check_tile(@layout[y - 1][x - 1])
+        if sprite
+          tile = Tile.new(sprite, x, y, rotate)
+          tile.draw_tile
         end
       end
     end
@@ -19,7 +20,7 @@ class Spherepod < Ship
   attr_accessor :width, :height
 
   def initialize
-    @width = 11 # 3 - adjusted for indexing
+    @width = 11
     @height = 11
     @layout = [
       [:none, :none, :none, :topleft_window, :hori_window, :hori_window, :hori_window, :topright_window, :none, :none, :none],
